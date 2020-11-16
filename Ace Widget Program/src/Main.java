@@ -15,6 +15,10 @@ public class Main {
 		int userInput;
 		double largeQ1, largeQ2, largeQ3, largeQ4, largeTotal;
 		double smallQ1, smallQ2, smallQ3, smallQ4, smallTotal;
+		double totalQ1=0, totalQ2=0, totalQ3=0, totalQ4=0, yearlyTotal=0;
+		double averageQ1, averageQ2, averageQ3, averageQ4, yearAverage;
+		int highQuarter, lowQuarter;
+		double highQuarterAmount, lowQuarterAmount;
 		
 		
 		//welcome screen
@@ -122,7 +126,7 @@ public class Main {
 					+ "Please enter 3 if you want to see data for a specific employee. \n"
 					+ "Please enter 4 if you want to see the employee(s) with the highest sales. \n"
 					+ "Please enter 5 if you want to see the employee(s) with the lowest sales. \n"
-					+ "Please enter 6 to end.");
+					+ "Please enter 6 to end and see a summary of sales.");
 			userInput = myObj.nextInt();
 			
 			
@@ -505,11 +509,123 @@ public class Main {
 				
 					break;
 				
-				//to end program
+				//*EXTRA CREDIT*
+				//to end program and summarize sales 
 				case 6:
+					
+					//output Q1 total
+					for (int i = 0; i < employeeCounter; i++) {
+						totalQ1 = totalQ1 + employees[i].getSale1();
+					}
+					System.out.print("Ace Widget made $");
+					System.out.printf("%.2f" , totalQ1);
+					System.out.println(" in Quarter 1");
+					
+					//output Q2 total
+					for (int i = 0; i < employeeCounter; i++) {
+						totalQ2 = totalQ2 + employees[i].getSale2();
+					}
+					System.out.print("Ace Widget made $");
+					System.out.printf("%.2f" , totalQ2);
+					System.out.println(" in Quarter 2");
+					
+					//output Q3 total
+					for (int i = 0; i < employeeCounter; i++) {
+						totalQ3 = totalQ3 + employees[i].getSale3();
+					}
+					System.out.print("Ace Widget made $");
+					System.out.printf("%.2f" , totalQ3);
+					System.out.println(" in Quarter 3");
+					
+					//output Q4 total
+					for (int i = 0; i < employeeCounter; i++) {
+						totalQ4 = totalQ4 + employees[i].getSale4();
+					}
+					System.out.print("Ace Widget made $");
+					System.out.printf("%.2f" , totalQ4);
+					System.out.println(" in Quarter 4");
+					
+					//output total for entire year
+					for (int i = 0; i < employeeCounter; i++) {
+						yearlyTotal = yearlyTotal + employees[i].getTotal();
+					}
+					System.out.print("Ace Widget made a total of $");
+					System.out.printf("%.2f" , yearlyTotal);
+					System.out.println(" for the entire year");
+					
+					
+					//output average for Q1
+					averageQ1 = totalQ1 / employeeCounter;
+					System.out.print("The average of Quarter 1 was $");
+					System.out.printf("%.2f" , averageQ1);
+					System.out.println(" ");
+					
+					//output average for Q2
+					averageQ2 = totalQ2 / employeeCounter;
+					System.out.print("The average of Quarter 2 was $");
+					System.out.printf("%.2f" , averageQ2);
+					System.out.println(" ");
+					
+					//output average for Q3
+					averageQ3 = totalQ3 / employeeCounter;
+					System.out.print("The average of Quarter 3 was $");
+					System.out.printf("%.2f" , averageQ3);
+					System.out.println(" ");
+					
+					//output average for Q4
+					averageQ4 = totalQ4 / employeeCounter;
+					System.out.print("The average of Quarter 4 was $");
+					System.out.printf("%.2f" , averageQ4);
+					System.out.println(" ");
+					
+					//output average for the whole year 
+					yearAverage = yearlyTotal / 4;
+					System.out.print("The average for the entire year was $");
+					System.out.printf("%.2f" , yearAverage);
+					System.out.println(" ");
+					
+					//output the best quarter
+					highQuarter = 1;
+					highQuarterAmount = totalQ1;
+					
+					if (totalQ2 > highQuarterAmount) {
+						highQuarter = 2;
+						highQuarterAmount = totalQ2;
+					}if (totalQ3 > highQuarter) {
+						highQuarter = 3;
+						highQuarterAmount = totalQ3;
+					}if (totalQ4 > highQuarter) {
+						highQuarter = 4;
+						highQuarterAmount = totalQ4;}
+
+					System.out.print("The best quarter was Quarter " + highQuarter + " with: $");
+					System.out.printf("%.2f" , highQuarterAmount);
+					System.out.println(" ");
+					
+					
+					//output the worst quarter
+					lowQuarter = 1;
+					lowQuarterAmount = totalQ1;
+					
+					if (totalQ2 < lowQuarterAmount) {
+						lowQuarter = 2;
+						lowQuarterAmount = totalQ2;
+					}if (totalQ3 < highQuarter) {
+						lowQuarter = 3;
+						lowQuarterAmount = totalQ3;
+					}if (totalQ4 < highQuarter) {
+						lowQuarter = 4;
+						lowQuarterAmount = totalQ4;}
+
+					System.out.print("The worst quarter was Quarter " + lowQuarter + " with: $");
+					System.out.printf("%.2f" , lowQuarterAmount);
+					System.out.println(" ");
+					
+					
+					
 					employeeCounter = 11;
 					break;
-				
+					
 				//error check
 				default:
 					System.out.println("Error. Invalid input. Program will continue");
